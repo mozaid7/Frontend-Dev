@@ -10,7 +10,8 @@
       const a = document.getElementById("principal").value;
       const b = document.getElementById("time").value;
       const c = document.getElementById("rate").value;
-
+      
+      // call to the local server to get the inputs a, b & c
       const response = await fetch(
         `http://localhost:3000/interest?principal=${a}&rate=${b}&time=${c}`
       );
