@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
-        <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
-        <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
-        <button onclick="addTodo()">Add todo</button>
-        <br /> <br />
-      
-        <div id="todos">
-      
-        </div>
-      
+  <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
+  <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+
+  <div id="container">
+
+  </div>
   <script>
     function createChild(title, description, id) {
       const child = document.createElement("div");
@@ -26,35 +23,24 @@
       child.setAttribute("id", id);
       return child;
     }
-
-    function updateState(newTodos) {
-      const parent = document.getElementById("todos");
-      parent.innerHTML = "";
-      for (let i = 0; i < newTodos.length; i++) {
-        const title = newTodos[i].title;
-        const description = newTodos[i].description;
-        parent.appendChild(createChild(title, description, globalId++));
-      }
+    // State will always be an array
+    // Every element of state would have a title, description and id
+    //
+    //
+    function updateDomAccToState(state) {
+        const parent = document.getElementById("container");
+        parent.innerHTML = "";
+        for (let i = 0; i<state.length; i++) {
+            const child = createChild(state[i].title, state[i].description, state[i].id);
+            parent.appendChild(child);
+        }
     }
-
     window.setInterval(async function() {
         const res = await fetch("https://sum-server.100xdevs.com/todos")
-        const json = await res.json;
-        updateState(json)
+        const json = await res.json();
+        updateDomAccToState(json.todos)
     }, 5000)
-
-    // function addTodo() {
-    //   const title = document.getElementById("title").value;
-    //   const description = document.getElementById("description").value;
-    //   todoState.push({
-    //     title: title,
-    //     description: description,
-    //     id: globalId++,
-    //   })
-    //   updateState(todoState);
-    // }
-
   </script>
- </body> 
- 
+</body>
+
 </html>
