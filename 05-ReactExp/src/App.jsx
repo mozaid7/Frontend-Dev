@@ -2,48 +2,75 @@ import { useState } from 'react'
 import React, { Fragment } from 'react'
 import './App.css'
 
-let counter =4;
 function App() {
-  const [todos, setTodos] = useState([{
-    id: 1,
-    title: "go to gym",
-    description: "today at 5"
-  },{
-    id: 2,
-    title: "go to lib",
-    description: "today at 6"
-  }, {
-    id: 3,
-    title: "go to mess",
-    description: "today at 8"
-  }])
-
-function addTodo() {
-  setTodos([...todos, {
-    id: counter++,
-    title: "Go to sleep",
-    description: "at 10"
-  }])
-}
-
-  return (
-    <div>
-      <button onClick={addTodo}>Add a todo</button>
-      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
-    </div>
-  )
-}
-
-function Todo({title, description}) {
   return <div>
-    <h1>
-      {title}
-    </h1>
-    <h5>
-      {description}
-    </h5>
+    <CardWrapper innerComponent={<TextComponent />} />
+    <CardWrapper innerComponent={<TextComponent2 />} />
   </div>
 }
+
+function TextComponent() {
+  return <div>
+    Hi There!
+  </div>
+}
+function TextComponent2() {
+  return <div>
+    Hi There!
+  </div>
+}
+
+function CardWrapper ({innerComponent}) {
+  return <div style={{border: "2px solid black", padding: "4px"}}>
+    {innerComponent}
+  </div>
+}
+
+
+
+// keys added to uniquely identify a component in the list
+// let counter =4;
+// function App() {
+//   const [todos, setTodos] = useState([{
+//     id: 1,
+//     title: "go to gym",
+//     description: "today at 5"
+//   },{
+//     id: 2,
+//     title: "go to lib",
+//     description: "today at 6"
+//   }, {
+//     id: 3,
+//     title: "go to mess",
+//     description: "today at 8"
+//   }])
+
+// function addTodo() {
+//   setTodos([...todos, {
+//     id: counter++,
+//     title: "Go to sleep",
+//     description: "at 10"
+//   }])
+// }
+
+//   return (
+//     <div>
+//       <button onClick={addTodo}>Add a todo</button>
+//       {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
+//     </div>
+//   )
+// }
+
+// function Todo({title, description}) {
+//   return <div>
+//     <h1>
+//       {title}
+//     </h1>
+//     <h5>
+//       {description}
+//     </h5>
+//   </div>
+// }
 
 
 // minimizing re-rendering by using React.memo
