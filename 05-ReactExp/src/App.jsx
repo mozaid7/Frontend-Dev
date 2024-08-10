@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import React, { Fragment } from 'react'
 import './App.css'
 
+// useEffect hook used to call the todos when 1st mounted
 function App() {
   const [todos, setTodos] = useState([])
 
