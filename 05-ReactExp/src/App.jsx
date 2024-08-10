@@ -2,29 +2,32 @@ import { useState } from 'react'
 import React, { Fragment } from 'react'
 import './App.css'
 
-function App() {
-  return <div>
-    <CardWrapper innerComponent={<TextComponent />} />
-    <CardWrapper innerComponent={<TextComponent2 />} />
-  </div>
-}
 
-function TextComponent() {
-  return <div>
-    Hi There!
-  </div>
-}
-function TextComponent2() {
-  return <div>
-    Hi There!
-  </div>
-}
+// wrapping the components inside each other using wrapper
+// function App() {
+//   return <div>
+//     <CardWrapper>
+//       <CardWrapper>
+//         <div>
+//           Hi There!
+//         </div>
+//       </CardWrapper>
+//     </CardWrapper>
+//     <CardWrapper>
+//       <div>
+//         Hello There!
+//       </div>
+//     </CardWrapper>
+    
+    
+//   </div>
+// }
 
-function CardWrapper ({innerComponent}) {
-  return <div style={{border: "2px solid black", padding: "4px"}}>
-    {innerComponent}
-  </div>
-}
+// function CardWrapper ({children}) {
+//   return <div style={{border: "2px solid black", padding: "20px"}}>
+//     {children}
+//   </div>
+// }
 
 
 
