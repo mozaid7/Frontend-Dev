@@ -15,7 +15,6 @@ function App() {
       <Header title={title} />
       <Header title="Zaid2" />
       <Header title="Zaid2" />
-      <Header title="Zaid2" />
     </div>
   )
 }
