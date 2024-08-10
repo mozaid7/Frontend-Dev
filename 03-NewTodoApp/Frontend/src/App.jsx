@@ -9,11 +9,16 @@ import { Todos } from './Components/Todos'
 function App() {
   const [todos, setTodos] = useState([]);
 
-  fetch("http://localhost:3000/todos")
-    .then(async function(res) {
-      const json = await res.json();
-      setTodos(json.todos);
-    })
+
+  useEffect(() => {
+    setInterval(() => {
+      fetch("http://localhost:3000/todos")
+       .then(async function(res) {
+          const json = await res.json();
+          setTodos(json.todos);
+        })
+    }, 3000)
+  }, [])
 
   return (
     <div>
