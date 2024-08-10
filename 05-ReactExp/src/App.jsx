@@ -1,8 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React, { Fragment } from 'react'
 import './App.css'
 
+function App() {
+  useEffect(function() {
+    alert("Hi")
+  }, [])
 
+  return <div>
+    Hi There!
+  </div>
+}
 // wrapping the components inside each other using wrapper
 // function App() {
 //   return <div>
