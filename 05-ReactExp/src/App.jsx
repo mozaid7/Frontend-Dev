@@ -2,6 +2,7 @@ import { useState } from 'react'
 import React, { Fragment } from 'react'
 import './App.css'
 
+let counter =4;
 function App() {
   const [todos, setTodos] = useState([{
     id: 1,
@@ -19,7 +20,7 @@ function App() {
 
 function addTodo() {
   setTodos([...todos, {
-    id: 4,
+    id: counter++,
     title: "Go to sleep",
     description: "at 10"
   }])
@@ -28,7 +29,7 @@ function addTodo() {
   return (
     <div>
       <button onClick={addTodo}>Add a todo</button>
-      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
+      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
     </div>
   )
 }
