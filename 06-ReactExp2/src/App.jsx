@@ -4,35 +4,28 @@ import axios from "axios";
 import './App.css'
 
 
-
-// useEffect hook used to call the todos when 1st mounted
 function App() {
-  const [todos, setTodos] = useState([])
-
-  useEffect(() => {
-    setInterval(() => {
-      fetch("https://sum-server.100xdevs.com/todos")
-       .then(async function(res) {
-          const json = await res.json();
-          setTodos(json.todos);
-        })
-    }, 10000)
-  }, [])
-
-  return (
-    <div>
-      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
-    </div>
-  )
+  return <div>
+    <Todo id={5} />
+  </div>
 }
 
-function Todo({title, description}) {
+function Todo({id}) {
+  const [todo, setTodo] = useState([])
+
+  useEffect(() => {
+      axios.get("https://sum-server.100xdevs.com/todo?id=" + id)
+       .then(response => {
+        setTodo(response.data.todo)
+       })
+  }, [])
+
   return <div>
     <h1>
-      {title}
+      {todo.title}
     </h1>
     <h5>
-      {description}
+      {todo.description}
     </h5>
   </div>
 }
