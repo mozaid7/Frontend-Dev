@@ -1,32 +1,59 @@
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, memo } from 'react'
 import React, { Fragment } from 'react'
 import axios from "axios";
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState(1);
-  
-  // useMemo will let this code run only when the inputValue changes, otherwise this code will not render unnecessarily
-  let count = useMemo(() => {
-    let count = 0;
-    for (let i = 1; i <= inputValue; i++) {
-     count = count + i;
-    }
-    return count;
-  }, [inputValue]);
 
- return <div>
-  <input onChange={function(e) {
-    setInputValue(e.target.value);
-  }} placeholder='Find sum from 1 to n'></input>
-  <br />
-  Sum from 1 to {inputValue} is {count}
-  <br />
-  <button onClick={() => {
-    setCounter(counter + 1);
-  }}>Counter ({counter})</button>
- </div>
+function App() {
+  const [count, setCount] = useState(0)
+  
+// useCallback tells the prg. that the function is same & do not re-render even if the parent re-renders
+  const inputVal = useCallback(() => {
+    console.log("child clicked")
+  }, [])
+    
+  return <div>
+    <Child onClick={inputVal} />
+    <button onClick={() => {
+      setCount(count + 1);
+    }}>Click me {count}</button>
+  </div>
 }
+
+const Child = memo(({onClick}) => {
+  console.log("child render")
+
+  return <div>
+    <button onClick={onClick}>Button clicked</button>
+  </div>
+})
+
+
+
+// function App() {
+//   const [counter, setCounter] = useState(0);
+//   const [inputValue, setInputValue] = useState(1);
+  
+//   // useMemo will let this code run only when the inputValue changes, otherwise this code will not render unnecessarily
+//   let count = useMemo(() => {
+//     let count = 0;
+//     for (let i = 1; i <= inputValue; i++) {
+//      count = count + i;
+//     }
+//     return count;
+//   }, [inputValue]);
+
+//  return <div>
+//   <input onChange={function(e) {
+//     setInputValue(e.target.value);
+//   }} placeholder='Find sum from 1 to n'></input>
+//   <br />
+//   Sum from 1 to {inputValue} is {count}
+//   <br />
+//   <button onClick={() => {
+//     setCounter(counter + 1);
+//   }}>Counter ({counter})</button>
+//  </div>
+// }
 
 // useEffect hook implementation
 // function App() {
