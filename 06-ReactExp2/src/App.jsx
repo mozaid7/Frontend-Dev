@@ -5,7 +5,8 @@ import axios from "axios";
 function App() {
   const [counter, setCounter] = useState(0);
   const [inputValue, setInputValue] = useState(1);
-
+  
+  // useMemo will let this code run only when the inputValue changes, otherwise this code will not render unnecessarily
   let count = useMemo(() => {
     let count = 0;
     for (let i = 1; i <= inputValue; i++) {
