@@ -1,6 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import React, { Fragment } from 'react'
+import axios from "axios";
 import './App.css'
+
+
 
 // useEffect hook used to call the todos when 1st mounted
 // function App() {
