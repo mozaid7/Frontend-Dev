@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useMemo, memo, useRef } from 'react'
 import React, { Fragment } from 'react'
 import axios from "axios";
 
+// useRef --> used to get reference of div 
 function App() {
   const divRef = useRef();
 
