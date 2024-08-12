@@ -128,6 +128,7 @@ import './App.css'
 //   )
 // }
 
+// memo prevents the child from re-rendering unnecessarily when the parent re-renders.
 // const Header = React.memo(function Header({title}) {
 //   return <div>
 //     {title}
