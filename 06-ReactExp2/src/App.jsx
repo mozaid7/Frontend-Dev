@@ -1,40 +1,58 @@
-import { useEffect, useState, useCallback, useMemo, memo } from 'react'
+import { useEffect, useState, useCallback, useMemo, memo, useRef } from 'react'
 import React, { Fragment } from 'react'
 import axios from "axios";
 
-// Custom Hooks
-function useTodos() {
-  const [todos, setTodos] = useState([]);
+function App() {
+  const divRef = useRef();
 
   useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todos")
-     .then((res) => {
-       setTodos(res.data.todos)
-       })
+    setTimeout(() => {
+      divRef.current.innerHTML = "10"
+    }, 5000);
   }, [])
 
-  return todos;
-}
+  const incomeTax = 20000;
 
-function App() {
-  const todos = useTodos();
   return (
     <div>
-      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
+        hi there, your income tax returns are <div ref={divRef}>{incomeTax}</div>
     </div>
   )
 }
 
-function Todo({title, description}) {
-  return <div>
-    <h1>
-      {title}
-    </h1>
-    <h5>
-      {description}
-    </h5>
-  </div>
-}
+// Custom Hooks
+// function useTodos() {
+//   const [todos, setTodos] = useState([]);
+
+//   useEffect(() => {
+//     axios.get("https://sum-server.100xdevs.com/todos")
+//      .then((res) => {
+//        setTodos(res.data.todos)
+//        })
+//   }, [])
+
+//   return todos;
+// }
+
+// function App() {
+//   const todos = useTodos();
+//   return (
+//     <div>
+//       {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
+//     </div>
+//   )
+// }
+
+// function Todo({title, description}) {
+//   return <div>
+//     <h1>
+//       {title}
+//     </h1>
+//     <h5>
+//       {description}
+//     </h5>
+//   </div>
+// }
 
 
 
