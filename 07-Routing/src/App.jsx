@@ -9,15 +9,16 @@ function App() {
 
   return (
     <div>
-      <Count count={count} />
-      <Buttons count={count} setCount={setCount} />
+      <Count count={count} setCount={setCount} />
     </div>
   )
 }
 
-function Count({count}) {
+// Because <Buttons> comp. needs {setCount}, we have to pass it in <Count> however <Count> does not need {setCount}. This is known as Prop-drilling.
+function Count({count, setCount}) {
  return <div>
   {count}
+  <Buttons count={count} setCount={setCount} />
  </div>
 }
 
