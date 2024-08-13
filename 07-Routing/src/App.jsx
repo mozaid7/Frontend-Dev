@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 // lazy lets you defer loading component’s code until it is rendered for the first time.
 import {lazy, Suspense, useContext, useState} from 'react';
 import { CountContext } from './context';
-import { countAtom } from './store/atoms/count';
+import { countAtom, evenSelector } from './store/atoms/count';
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
@@ -36,9 +36,10 @@ function CountRenderer() {
 }
 
 function EvenCountRenderer() {
-  const count = useRecoilValue(countAtom);
+  const isEven = useRecoilValue(evenSelector);
+
   return <div>
-    {(count % 2 == 0) ? "It is Even" : null}
+    {isEven ? "It is Even" : null}
   </div>
 }
 
