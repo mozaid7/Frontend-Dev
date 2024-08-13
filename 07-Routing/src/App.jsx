@@ -8,13 +8,20 @@ function App() {
 
   return (
   <div>
-    <div  style={{background: "black", color: "white"}}>
-      Hi there this is the top bar!!
+
+    <div>
+      <button onClick={() => {
+        window.location.href = "/";
+      }}>Landing Page</button>
+      <button onClick={() => {
+        window.location.href = "/dashboard";
+      }}>Dashboard</button>
     </div>
+
     <BrowserRouter>
      <Routes>
        <Route path="/Dashboard" element={<Dashboard />} />
-       <Route path="/Landing" element={<Landing />} />
+       <Route path="/" element={<Landing />} />
      </Routes>
     </BrowserRouter>
   </div>
