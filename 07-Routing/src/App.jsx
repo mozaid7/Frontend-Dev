@@ -1,13 +1,14 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
 
   return (
     <BrowserRouter>
-     <Router>
-       <Route></Route>
-       <Route></Route>
-     </Router>
+     <Routes>
+       <Route path="/Dashboard" element={<Dashboard />} />
+       <Route path="/Landing" element={<Landing />} />
+     </Routes>
     </BrowserRouter>
     
   )
