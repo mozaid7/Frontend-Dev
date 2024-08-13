@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import {lazy, Suspense, useContext, useState} from 'react';
 import { CountContext } from './context';
 import { countAtom } from './store/atoms/count';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
 
