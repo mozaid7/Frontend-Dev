@@ -11,3 +11,4 @@ This file contains the following topics:
 - useContext Hook
 - State Management
 - Recoil Library
+- RecoilRoot, atom, useRecoilState, useRecoilValue, useSetRecoilState, Selector
