@@ -7,7 +7,7 @@ import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'r
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
 
-// Context API with State Management Recoil Library
+// Context API with State Management Recoil Library with Selectors and Atoms
 function App() {
    return (
     <div>
