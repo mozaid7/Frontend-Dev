@@ -17,6 +17,7 @@ function App() {
   )
 }
 
+// useNavigate can be used only inside the BrowserRouter Comp
 function Appbar() {
   const navigate = useNavigate();
   return <div>
