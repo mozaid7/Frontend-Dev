@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {Landing} from './Components/Landing'
+import {Dashboard} from './Components/Dashboard'
+
 
 function App() {
 
