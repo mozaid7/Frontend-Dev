@@ -2,39 +2,38 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 // lazy lets you defer loading component’s code until it is rendered for the first time.
 import {lazy, Suspense, useContext, useState} from 'react';
 import { CountContext } from './context';
+import { countAtom } from './store/atoms/count';
+import { RecoilRoot } from 'recoil';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
 
-// Context-API
+// Context API with State Management Recoil Library
 function App() {
-  const [count, setCount] = useState(0);
-
-  // wrap anyone that wants to use the teleported value inside a provider
-  return (
+   return (
     <div>
-      <CountContext.Provider value={count}>
-        <Count setCount={setCount} />
-      </CountContext.Provider>
+      <RecoilRoot>
+        <Count />
+      </RecoilRoot>
     </div>
   )
 }
 
-function Count({setCount}) {
+function Count() {
   return <div>
     <CountRenderer />
-    <Buttons setCount={setCount} />
+    <Buttons />
   </div>
 }
 
 function CountRenderer() {
-  const count = useContext(CountContext);
+  const count = useRecoilValue(countAtom);
   return <div>
     {count}
   </div>
 }
 
-function Buttons({setCount}) {
-  const count = useContext(CountContext);
+function Buttons() {
+  const [count, setCount] = useRecoilState(countAtom);
   return <div>
     <button onClick={() => {
       setCount(count + 1)
@@ -45,6 +44,49 @@ function Buttons({setCount}) {
     }}>Decrease</button>
   </div>
 }
+
+
+
+// Context-API basics
+// function App() {
+//   const [count, setCount] = useState(0);
+
+//   // wrap anyone that wants to use the teleported value inside a provider
+//   return (
+//     <div>
+//       <CountContext.Provider value={count}>
+//         <Count setCount={setCount} />
+//       </CountContext.Provider>
+//     </div>
+//   )
+// }
+
+// function Count({setCount}) {
+//   return <div>
+//     <CountRenderer />
+//     <Buttons setCount={setCount} />
+//   </div>
+// }
+
+// function CountRenderer() {
+//   const count = useContext(CountContext);
+//   return <div>
+//     {count}
+//   </div>
+// }
+
+// function Buttons({setCount}) {
+//   const count = useContext(CountContext);
+//   return <div>
+//     <button onClick={() => {
+//       setCount(count + 1)
+//     }}>Increase</button>
+
+//     <button onClick={() => {
+//       setCount(count - 1)
+//     }}>Decrease</button>
+//   </div>
+// }
 
 
 
