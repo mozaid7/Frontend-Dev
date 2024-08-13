@@ -1,34 +1,40 @@
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 // lazy lets you defer loading component’s code until it is rendered for the first time.
-import {lazy, Suspense, useState} from 'react';
+import {lazy, Suspense, useContext, useState} from 'react';
+import { CountContext } from './context';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
-
 
 // Context-API
 function App() {
   const [count, setCount] = useState(0);
+
+  // wrap anyone that wants to use the teleported value inside a provider
   return (
     <div>
-      <Count count={count} setCount={setCount} />
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount} />
+      </CountContext.Provider>
     </div>
   )
 }
 
-function Count({count, setCount}) {
+function Count({setCount}) {
   return <div>
-    <CountRenderer count={count} />
-    <Buttons count={count} setCount={setCount} />
+    <CountRenderer />
+    <Buttons setCount={setCount} />
   </div>
 }
 
-function CountRenderer({count}) {
+function CountRenderer() {
+  const count = useContext(CountContext);
   return <div>
     {count}
   </div>
 }
 
-function Buttons({count, setCount}) {
+function Buttons({setCount}) {
+  const count = useContext(CountContext);
   return <div>
     <button onClick={() => {
       setCount(count + 1)
