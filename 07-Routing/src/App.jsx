@@ -4,9 +4,10 @@ import {lazy, Suspense, useState} from 'react';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
 
-function App() {
- const [count, setCount] = useState((0));
 
+// Context-API
+function App() {
+  const [count, setCount] = useState(0);
   return (
     <div>
       <Count count={count} setCount={setCount} />
@@ -14,27 +15,65 @@ function App() {
   )
 }
 
-// Because <Buttons> comp. needs {setCount}, we have to pass it in <Count> however <Count> does not need {setCount}. This is known as Prop-drilling.
 function Count({count, setCount}) {
- return <div>
-  {count}
-  <Buttons count={count} setCount={setCount} />
- </div>
+  return <div>
+    <CountRenderer count={count} />
+    <Buttons count={count} setCount={setCount} />
+  </div>
+}
+
+function CountRenderer({count}) {
+  return <div>
+    {count}
+  </div>
 }
 
 function Buttons({count, setCount}) {
- return <div>
-   <button onClick={() => {
-     setCount(count + 1)
-   }}>Increase</button>
-   <button onClick={() => {
-     setCount(count - 1)
-   }}>Decrease</button>
+  return <div>
+    <button onClick={() => {
+      setCount(count + 1)
+    }}>Increase</button>
+
+    <button onClick={() => {
+      setCount(count - 1)
+    }}>Decrease</button>
   </div>
 }
 
 
 
+// Prop-Drilling
+// function App() {
+//  const [count, setCount] = useState((0));
+
+//   return (
+//     <div>
+//       <Count count={count} setCount={setCount} />
+//     </div>
+//   )
+// }
+
+ // Because <Buttons> comp. needs {setCount}, we have to pass it in <Count> however <Count> does not need {setCount}. This is known as Prop-drilling.
+// function Count({count, setCount}) {
+//  return <div>
+//   {count}
+//   <Buttons count={count} setCount={setCount} />
+//  </div>
+// }
+
+// function Buttons({count, setCount}) {
+//  return <div>
+//    <button onClick={() => {
+//      setCount(count + 1)
+//    }}>Increase</button>
+//    <button onClick={() => {
+//      setCount(count - 1)
+//    }}>Decrease</button>
+//   </div>
+// }
+
+
+// Routing 
 // <Suspense> lets you display a fallback until its children have finished loading.
 // function App() {
 //   return (
