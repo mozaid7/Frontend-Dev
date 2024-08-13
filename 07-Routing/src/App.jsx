@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import {lazy, Suspense, useContext, useState} from 'react';
 import { CountContext } from './context';
 import { countAtom } from './store/atoms/count';
-import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
+import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 const Landing = lazy(() => import ('./Components/Landing'))
 const Dashboard = lazy(() => import ('./Components/Dashboard'))
 
@@ -33,14 +33,14 @@ function CountRenderer() {
 }
 
 function Buttons() {
-  const [count, setCount] = useRecoilState(countAtom);
+  const setCount = useSetRecoilState(countAtom);
   return <div>
     <button onClick={() => {
-      setCount(count + 1)
+      setCount(count => count + 1)
     }}>Increase</button>
 
     <button onClick={() => {
-      setCount(count - 1)
+      setCount(count => count - 1)
     }}>Decrease</button>
   </div>
 }
