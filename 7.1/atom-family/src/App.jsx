@@ -3,6 +3,7 @@ import './App.css'
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { todosAtomFamily } from './atoms';
 
+// Edits and comments there to copy
 function App() {
   return <RecoilRoot>
     <Todo id={1}/>
